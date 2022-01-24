@@ -22,7 +22,7 @@ public class CharacterDel {
 				if (characters.get(i).getName().equals(delName)) {
 					characters.remove(i);
 					System.out.println("삭제 완료");
-
+					return;
 				}
 			}
 
