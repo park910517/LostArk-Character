@@ -53,6 +53,8 @@ public class LostArk {
 					CharacterDel characterdel = new CharacterDel();
 					characterdel.run(characters);
 					System.out.println("");
+					break;
+					
 				case "e":
 					listEnd();
 					isNotEnd = false;
