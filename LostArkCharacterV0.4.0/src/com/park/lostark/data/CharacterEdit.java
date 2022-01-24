@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.park.lostark.display.Title;
+import com.park.lostark.util.So;
 
 public class CharacterEdit {
 
@@ -11,8 +12,8 @@ public class CharacterEdit {
 	String back = "back";
 
 	public void run(ArrayList<Character> characters) {
-		System.out.println(Title.EDIT);
-		System.out.print("수정할 캐릭터이름:");
+		So.pl(Title.EDIT);
+		So.p("수정할 캐릭터이름:");
 		String editInfo = sc.next();
 		int search = -1;
 
@@ -24,22 +25,22 @@ public class CharacterEdit {
 		}
 
 		if (search == -1) {
-			System.out.println("그런 캐릭터는 없습니다, 닉네임을 확인해주세요.");
+			So.pl("그런 캐릭터는 없습니다, 닉네임을 확인해주세요.");
 		} else {
-			System.out.print("변경할 레벨 입력:");
+			So.p("변경할 레벨 입력:");
 			String level = sc.next();
 
-			System.out.print("변경할 템렙 입력:");
+			So.p("변경할 템렙 입력:");
 			String itemlevel = sc.next();
 
-			System.out.print("변경할 각인 입력:");
+			So.p("변경할 각인 입력:");
 			String gakin = sc.next();
 
 			Character c = characters.get(search);
 			c.setLevel(level);
 			c.setItemlevel(itemlevel);
 			c.setGakin(gakin);
-			System.out.println("수정 완료");
+			So.pl("수정 완료");
 		}
 	}
 }

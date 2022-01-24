@@ -1,13 +1,15 @@
 package com.park.lostark.data;
 
+import com.park.lostark.util.So;
+
 public class Character {
 
-		private String name;
-		private String job;
-		private String level;
-		private String itemlevel;
-		private String gakin;
-		
+	private String name;
+	private String job;
+	private String level;
+	private String itemlevel;
+	private String gakin;
+
 	public Character(String name, String job, String level, String itemlevel, String gakin) {
 		this.name = name;
 		this.job = job;
@@ -55,11 +57,8 @@ public class Character {
 	public void setGakin(String gakin) {
 		this.gakin = gakin;
 	}
-	
+
 	public void info() {
-		System.out.println("<" + name + "> " + job + "(" + level + ") /" + itemlevel + "/ " + gakin);
+		So.pl("<" + name + "> " + job + "(" + level + ") /" + itemlevel + "/ " + gakin);
 	}
 }
-
-
-

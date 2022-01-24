@@ -4,25 +4,26 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.park.lostark.display.Title;
+import com.park.lostark.util.So;
 
 public class CharacterList {
 
 	String back = "back";
 
 	public void run(ArrayList<Character> characters) {
-		System.out.print("명령어 입력(1.전체목록 2.검색 (뒤로가기는 back입력)):");
+		So.p("명령어 입력(1.전체목록 2.검색 (뒤로가기는 back입력)):");
 		Scanner sc = new Scanner(System.in);
 		String cmd = sc.next();
 		switch (cmd) {
 		case "1":
-			System.out.println(Title.LIST);
+			So.pl(Title.LIST);
 			for (Character c : characters) {
 				c.info();
 			}
 			break;
 		case "2":
-			System.out.println(Title.SEARCH);
-			System.out.print("검색하고 싶은 캐릭터 닉네임:");
+			So.pl(Title.SEARCH);
+			So.p("검색하고 싶은 캐릭터 닉네임:");
 			String characterSearch = sc.next();
 			for (int i = 0; i < characters.size(); i++) {
 				if (characters.get(i).getName().equals(characterSearch)) {
@@ -37,7 +38,7 @@ public class CharacterList {
 			}
 			boolean search = characters.contains(characterSearch);
 			if (search == false) {
-				System.out.println("그런 캐릭터는 없습니다. 닉네임을 확인해주세요.");
+				So.pl("그런 캐릭터는 없습니다. 닉네임을 확인해주세요.");
 				return;
 			}
 

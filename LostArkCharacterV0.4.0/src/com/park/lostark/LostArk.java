@@ -9,6 +9,7 @@ import com.park.lostark.data.CharacterDel;
 import com.park.lostark.data.CharacterEdit;
 import com.park.lostark.data.CharacterList;
 import com.park.lostark.display.Title;
+import com.park.lostark.util.So;
 
 public class LostArk {
 
@@ -29,35 +30,35 @@ public class LostArk {
 		boolean isNotEnd = true;
 		Scanner sc = new Scanner(System.in);
 		while (isNotEnd) {
-			System.out.print("명령어 입력(1.캐릭터목록 2.캐릭터추가 3.캐릭터수정 4.캐릭터삭제 e.종료):\n");
+			So.p("명령어 입력(1.캐릭터목록 2.캐릭터추가 3.캐릭터수정 4.캐릭터삭제 e.종료):\n");
 			String cmd = sc.next();
 			switch (cmd) {
 			case "1":
 				CharacterList characterlist = new CharacterList();
 				characterlist.run(characters);
-				System.out.println("");
+				So.pl("");
 				break;
 			case "2":
 				CharacterAdd characteradd = new CharacterAdd();
 				characteradd.run(characters);
-				System.out.println("");
+				So.pl("");
 				break;
 			case "3":
 				CharacterEdit characteredit = new CharacterEdit();
 				characteredit.run(characters);
-				System.out.println("");
+				So.pl("");
 				break;
 			case "4":
 				CharacterDel characterdel = new CharacterDel();
 				characterdel.run(characters);
-				System.out.println("");
+				So.pl("");
 				break;
 			case "e":
 				listEnd();
 				isNotEnd = false;
 				return;
 			default:
-				System.out.println("올바른 명령어가 아닙니다.");
+				So.p("올바른 명령어가 아닙니다.");
 
 			}
 		}
@@ -65,6 +66,6 @@ public class LostArk {
 	}
 
 	void listEnd() {
-		System.out.println("프로그램 종료");
+		So.pl("프로그램 종료");
 	}
 }
