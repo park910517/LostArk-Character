@@ -32,7 +32,7 @@ public class CharacterAdd {
 		if (back.equals(level)) {
 			return;
 		}
-		So.p("템렙:");
+		So.p("아이템레벨:");
 		itemlevel = sc.next();
 		if (back.equals(itemlevel)) {
 			return;

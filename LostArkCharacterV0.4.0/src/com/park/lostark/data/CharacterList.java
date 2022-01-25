@@ -11,7 +11,7 @@ public class CharacterList {
 	String back = "back";
 
 	public void run(ArrayList<Character> characters) {
-		So.p("명령어 입력(1.전체목록 2.검색 (뒤로가기는 back입력)):");
+		So.p("명령어 입력(캐릭터목록>> 1.전체목록 2.검색 (뒤로가기는 back입력)):");
 		Scanner sc = new Scanner(System.in);
 		String cmd = sc.next();
 		switch (cmd) {

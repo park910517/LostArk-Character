@@ -30,7 +30,7 @@ public class CharacterEdit {
 			So.p("변경할 레벨 입력:");
 			String level = sc.next();
 
-			So.p("변경할 템렙 입력:");
+			So.p("변경할 아이템레벨 입력:");
 			String itemlevel = sc.next();
 
 			So.p("변경할 각인 입력:");
