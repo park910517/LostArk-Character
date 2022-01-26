@@ -7,71 +7,242 @@ import com.park.lostark.util.So;
 
 public class CharacterGold {
 
-	int argos = 1600;	//레이드 골드
-	int nBal = 2500;	//레이드 골드
-	int nBia = 2500;	//레이드 골드
-	int hBal = 4500;	//레이드 골드
+	int argos = 1600; // 레이드 골드
+	int nBal = 2500; // 레이드 골드
+	int nBia = 2500; // 레이드 골드
+	int hBal = 4500; // 레이드 골드
 	Scanner sc = new Scanner(System.in);
+	int s = 0;
+	int s1 = 0;
+	int s2 = 0;
+	int s3 = 0;
+	int s4 = 0;
+	int s5 = 0;
+	
 
 	public void run(ArrayList<Character> characters) {
-		So.p("명령어 입력(1.6캐릭터 주간 총 골드 2.주간 골드 알고 싶은 닉네임): ");
+		So.p("명령어 입력(1.6캐릭터 주간 총 골드 2.주간 골드 알고 싶은 닉네임(뒤로가기는 back입력): ");
+		boolean isNotEnd = true;
 		String cmd = sc.next();
-		switch (cmd) {
-		case "1":
-			So.p("첫번째 캐릭터 닉네임:");
-			String goldAllName_1 = sc.next();	//첫번째 캐릭터 입력
-			for (int i = 0; i < characters.size(); i++) {
-				if (characters.get(i).getName().equals(goldAllName_1)) {	//닉네임 탐색
-					if (characters.get(i).getItemlevel() >= 1415 && characters.get(i).getItemlevel() <= 1444) {	//탐색한 닉네임의 itemlevel값이 1415~1444인가?
-						gold_1();
-		}																							//탐색한 닉넴의 템렙이 1415~1444이면 gold_1함수실행, 1445이상이면 gold_2함수실행
-					if (characters.get(i).getItemlevel() >= 1445) {	//탐색한 닉네임의 아이템레벨값이 1445이상인가?
-						gold_2();
-					}
-					
-				}
-			}
-			So.p("두번째 캐릭터 닉네임:");
-			String goldAllName_2 = sc.next();// 두번째 캐릭터입력
-			for (int i = 0; i < characters.size(); i++) {
-				if (characters.get(i).getName().equals(goldAllName_2)) {
-					if (characters.get(i).getItemlevel() >= 1415 && characters.get(i).getItemlevel() <= 1444) {
-						int s = gold_1();	//s에 gold_1함수 넣기
-					}
-					if (characters.get(i).getItemlevel() >= 1445) {
-						int s = gold_2();	//s에 gold_2함수 넣기
-					}
-					return s; //s값 리턴
-				}
-			}
-			System.out.println(s);	//s값 출력 	//to do 첫번째 캐릭터의 골드값과 두번째 캐릭터의 골드값 더한값을 출력(최종은 6캐릭 더한값) 
-			break;
-		case "2":
-			System.out.println("닉네임:");
-			String goldName = sc.next();
-			for (int i = 0; i < characters.size(); i++) {
-				if (characters.get(i).getName().equals(goldName)) {
-					if (characters.get(i).getItemlevel() >= 1415 && characters.get(i).getItemlevel() <= 1444) {
-						System.out.println(gold_1() + "골드");
-					}
-					if (characters.get(i).getItemlevel() >= 1445) {
-						System.out.println(gold_2() + "골드");
-					}
-				}
-			}
-			break;
+		while (isNotEnd) {
+			switch (cmd) {
+			case "1":
+				So.p("첫번째 캐릭터 닉네임:");
+				goldName1(characters);
+				So.p("두번째 캐릭터 닉네임:");
+				goldName2(characters);
+				So.p("세번째 캐릭터 닉네임:");
+				goldName3(characters);
+				So.p("네번째 캐릭터 닉네임:");
+				goldName4(characters);
+				So.p("다섯번째 캐릭터 닉네임:");
+				goldName5(characters);
+				So.p("여섯번째 캐릭터 닉네임:");
+				goldName6(characters);
+				So.pl(s + s1 + s2 + s3 + s4 + s5 + "골드");
+				isNotEnd = false;
+				break;
+			case "2":
+				proc2(characters);
+				isNotEnd = false;
+				break;
 
+			case "back":
+				isNotEnd = false;
+				break;
+			}
 		}
 	}
 
-	int gold_1() {	//두가지 레이드 골드 총값 g1에 리턴
+	int gold_1() { // 두가지 레이드 골드 총값 g1에 리턴
 		int g1 = argos + nBal;
 		return g1;
 	}
 
-	int gold_2() {	//세가지 레이드 골드 총값 g2에 리턴
+	int gold_2() { // 세가지 레이드 골드 총값 g2에 리턴
 		int g2 = argos + nBia + hBal;
 		return g2;
+	}
+
+	int gold_3() {
+		int g3 = hBal + nBia;
+		return g3;
+	}
+
+	void proc2(ArrayList<Character> characters) {	//캐릭터 하나의 주간골드수익
+		So.pl("닉네임:");
+		String goldName = sc.next();
+		for (int i = 0; i < characters.size(); i++) {
+			if (characters.get(i).getName().equals(goldName)) {
+				if (characters.get(i).getItemlevel() >= 1415 && characters.get(i).getItemlevel() <= 1444) {
+					So.pl(gold_1() + "골드");
+				}
+				if (characters.get(i).getItemlevel() >= 1445 && characters.get(i).getItemlevel() <= 1472) {
+					So.pl(gold_2() + "골드");
+				}
+				if (characters.get(i).getItemlevel() >= 1475) { // 탐색한 닉네임의 아이템레벨값이 1475이상인가?
+					So.pl(gold_3() + "골드");
+				}
+				return;
+			}
+		}
+		boolean search = characters.contains(goldName); // contains이용 닉네임 탐색
+		if (search == false) { // 없다면 출력
+			So.pl("그런 캐릭터는 없습니다. 닉네임을 확인해주세요.");
+			return;
+		}
+
+		
+	}
+
+	void goldName1(ArrayList<Character> characters) {
+		String goldAllName = sc.next();
+
+		for (int i = 0; i < characters.size(); i++) {
+			if (characters.get(i).getName().equals(goldAllName)) {
+				if (characters.get(i).getItemlevel() >= 1415 && characters.get(i).getItemlevel() <= 1444) {
+					s = gold_1(); // s에 gold_1함수 넣기
+				}
+				if (characters.get(i).getItemlevel() >= 1445 && characters.get(i).getItemlevel() <= 1472) {
+					s = gold_2(); // s에 gold_2함수 넣기
+				}
+				if (characters.get(i).getItemlevel() >= 1475) {
+					s = gold_3();
+				}
+				return;
+			}
+		}
+		boolean search = characters.contains(goldAllName); // contains이용 닉네임 탐색
+		if (search == false) { // 없다면 출력
+			So.pl("그런 캐릭터는 없습니다. 닉네임을 확인해주세요.");
+			return;
+		}
+
+	}
+
+	void goldName2(ArrayList<Character> characters) {
+		String goldAllName = sc.next();
+
+		for (int i = 0; i < characters.size(); i++) {
+			if (characters.get(i).getName().equals(goldAllName)) {
+				if (characters.get(i).getItemlevel() >= 1415 && characters.get(i).getItemlevel() <= 1444) {
+					s1 = gold_1(); // s에 gold_1함수 넣기
+				}
+				if (characters.get(i).getItemlevel() >= 1445 && characters.get(i).getItemlevel() <= 1472) {
+					s1 = gold_2(); // s에 gold_2함수 넣기
+				}
+				if (characters.get(i).getItemlevel() >= 1475) {
+					s1 = gold_3();
+				}
+				return;
+			}
+		}
+		boolean search = characters.contains(goldAllName); // contains이용 닉네임 탐색
+		if (search == false) { // 없다면 출력
+			So.pl("그런 캐릭터는 없습니다. 닉네임을 확인해주세요.");
+			return;
+		}
+
+	}
+
+	void goldName3(ArrayList<Character> characters) {
+		String goldAllName = sc.next();
+
+		for (int i = 0; i < characters.size(); i++) {
+			if (characters.get(i).getName().equals(goldAllName)) {
+				if (characters.get(i).getItemlevel() >= 1415 && characters.get(i).getItemlevel() <= 1444) {
+					s2 = gold_1(); // s에 gold_1함수 넣기
+				}
+				if (characters.get(i).getItemlevel() >= 1445 && characters.get(i).getItemlevel() <= 1472) {
+					s2 = gold_2(); // s에 gold_2함수 넣기
+				}
+				if (characters.get(i).getItemlevel() >= 1475) {
+					s2 = gold_3();
+				}
+				return;
+			}
+		}
+		boolean search = characters.contains(goldAllName); // contains이용 닉네임 탐색
+		if (search == false) { // 없다면 출력
+			So.pl("그런 캐릭터는 없습니다. 닉네임을 확인해주세요.");
+			return;
+		}
+
+	}
+
+	void goldName4(ArrayList<Character> characters) {
+		String goldAllName = sc.next();
+
+		for (int i = 0; i < characters.size(); i++) {
+			if (characters.get(i).getName().equals(goldAllName)) {
+				if (characters.get(i).getItemlevel() >= 1415 && characters.get(i).getItemlevel() <= 1444) {
+					s3 = gold_1(); // s에 gold_1함수 넣기
+				}
+				if (characters.get(i).getItemlevel() >= 1445 && characters.get(i).getItemlevel() <= 1472) {
+					s3 = gold_2(); // s에 gold_2함수 넣기
+				}
+				if (characters.get(i).getItemlevel() >= 1475) {
+					s3 = gold_3();
+				}
+				return;
+			}
+		}
+		boolean search = characters.contains(goldAllName); // contains이용 닉네임 탐색
+		if (search == false) { // 없다면 출력
+			So.pl("그런 캐릭터는 없습니다. 닉네임을 확인해주세요.");
+			return;
+		}
+
+	}
+
+	void goldName5(ArrayList<Character> characters) {
+		String goldAllName = sc.next();
+
+		for (int i = 0; i < characters.size(); i++) {
+			if (characters.get(i).getName().equals(goldAllName)) {
+				if (characters.get(i).getItemlevel() >= 1415 && characters.get(i).getItemlevel() <= 1444) {
+					s4 = gold_1(); // s에 gold_1함수 넣기
+				}
+				if (characters.get(i).getItemlevel() >= 1445 && characters.get(i).getItemlevel() <= 1472) {
+					s4 = gold_2(); // s에 gold_2함수 넣기
+				}
+				if (characters.get(i).getItemlevel() >= 1475) {
+					s4 = gold_3();
+				}
+				return;
+			}
+		}
+		boolean search = characters.contains(goldAllName); // contains이용 닉네임 탐색
+		if (search == false) { // 없다면 출력
+			So.pl("그런 캐릭터는 없습니다. 닉네임을 확인해주세요.");
+			return;
+		}
+
+	}
+
+	void goldName6(ArrayList<Character> characters) {
+		String goldAllName = sc.next();
+
+		for (int i = 0; i < characters.size(); i++) {
+			if (characters.get(i).getName().equals(goldAllName)) {
+				if (characters.get(i).getItemlevel() >= 1415 && characters.get(i).getItemlevel() <= 1444) {
+					s5 = gold_1(); // s에 gold_1함수 넣기
+				}
+				if (characters.get(i).getItemlevel() >= 1445 && characters.get(i).getItemlevel() <= 1472) {
+					s5 = gold_2(); // s에 gold_2함수 넣기
+				}
+				if (characters.get(i).getItemlevel() >= 1475) {
+					s5 = gold_3();
+				}
+				return;
+			}
+		}
+		boolean search = characters.contains(goldAllName); // contains이용 닉네임 탐색
+		if (search == false) { // 없다면 출력
+			So.pl("그런 캐릭터는 없습니다. 닉네임을 확인해주세요.");
+			return;
+		}
+
 	}
 
 }

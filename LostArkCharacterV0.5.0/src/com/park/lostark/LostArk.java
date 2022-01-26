@@ -64,7 +64,7 @@ public class LostArk {
 				isNotEnd = false;
 				return;
 			default:	//이외의 값 입력할시 문구
-				So.p("올바른 명령어가 아닙니다.");
+				So.pl("올바른 명령어가 아닙니다.");
 
 			}
 		}
